@@ -1,0 +1,12 @@
+.show {
+  display: block;
+}
+
+.modal-dialog{
+  overflow-y: initial !important;
+}
+
+.modal-body{
+  height: 35rem;
+  overflow-y: auto;
+}

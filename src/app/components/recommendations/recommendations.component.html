@@ -1,0 +1,83 @@
+<div *ngIf="selectedTrack" class="modal" [ngClass]="display">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title d-flex justify-content-center align-items-center">Добавить {{selectedTrack.name}}?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="closeModalDialog()">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <div *ngIf="playlists">
+              <div *ngFor="let playlist of playlists">
+                <div class="card border-warning mb-12" style="max-width: 50rem; margin: 1rem;">
+                  <div class="card-header" style="height: 3.5rem">
+                    <div>
+                      <h5>{{playlist.name}} от {{playlist.owner.displayName}}</h5>
+                    </div>
+                  </div>
+                  <div class="card-body" style="height: 4rem">
+                    <div class="float-left">
+                      <h5>Песен добавлено: {{playlist.tracks.total}}</h5>
+                    </div>
+                    <div class="float-right">
+                      <button class="btn btn-danger float-right" style="cursor: pointer" (click)="addTrackToPlaylist(playlist.id)">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModalDialog()">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row pt-5">
+  <div class="col-md-10 mx-auto">
+    <h2>Возможно вам понравится эта музыка!</h2>
+  </div>
+</div>
+<div class="row d-flex justify-content-center align-items-center p-2"><h3>Обновить рекомендации</h3></div>
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" (click)="refresh('artists')"
+            class="btn btn-info float-right" style="width: 22rem; height: 12rem; font-size: 2rem">По исполнителям</button>
+  </div>
+  <div class="col-md-6">
+    <button type="button" (click)="refresh('tracks')"
+            class="btn btn-warning float-left" style="width: 22rem; height: 12rem; font-size: 2rem">По трекам</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div *ngIf="tracks">
+      <div *ngFor="let track of tracks">
+        <div class="card border-warning mb-10" style="max-width: 50rem; margin: 1rem;">
+          <div class="card-header" style="height: 4rem">
+            <div>
+              <button (click)="openModalDialog(track)"
+                class="btn btn-success float-right" style="cursor: pointer">+</button>
+              <h5>{{track.name}}
+                <p *ngIf="track.artists.length > 0">
+                  Исполнители: <span *ngFor="let artist of track.artists"><a routerLink="/artist/{{artist.id}}">{{artist.name}} </a></span>
+                </p>
+              </h5>
+            </div>
+          </div>
+          <div class="card-body" style="height: 4rem">
+            <div class="float-right">
+              <a href="{{track.previewUrl}}" target="_blank"><h5>Пробная версия</h5></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

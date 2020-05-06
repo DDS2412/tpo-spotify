@@ -1,0 +1,30 @@
+<div class="row pt-5">
+  <div class="col-md-10 mx-auto">
+    <h1 class="d-flex justify-content-center align-items-center">Попробуй новую музыку!</h1>
+    <div *ngIf="isLogin()" class="pt-3">
+      <p class="lead">Попробуй ngSpotify для поиска новых треков или найди свои любимые песни</p>
+      <form>
+        <div class="form-group">
+          <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="searchMusic()" class="form-control" placeholder="Найти музыку...">
+        </div>
+      </form>
+      <div *ngIf="searchRes">
+        <div *ngFor="let res of searchRes">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="card border-warning mb-12 d-flex justify-content-center align-items-center" style="max-width: 50rem; margin: 0.5rem">
+                <div class="card-header"><h5><a routerLink="/artist/{{res.id}}">{{res.name}}</a></h5></div>
+                <div class="card-body">
+                  <strong>Жанры: </strong>
+                  <span *ngFor="let gener of res.genres">{{gener}} </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

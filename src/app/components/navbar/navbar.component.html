@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><h4>ngSpotify</h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/" routerLinkActive="active"><h5>Главная<span class="sr-only">(current)</span></h5></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/recommendations" routerLinkActive="active"><h5>Рекомендации</h5></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/playlists" routerLinkActive="active"><h5>Мои плейлисты</h5></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <button class="btn btn-success float-right" *ngIf="!isLogin()" (click)="login()">Вход</button>
+      <button class="btn btn-danger float-right" style="cursor: pointer" *ngIf="isLogin()" (click)="logout()">Выход</button>
+    </ul>
+  </div>
+</nav>
